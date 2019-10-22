@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header"
-import Main from "./components/pages/Main";
-import Register from "./components/pages/Register"
-import Login from "./components/pages/Login"
-import Welcome from "./components/pages/Welcome"
+import Main from "./components/pages/Main/Main";
+import Register from "./components/pages/Register/Register"
+import Login from "./components/pages/Login/Login"
+import Welcome from "./components/pages/Welcome/Welcome"
 import Footer from "./components/Footer"
 
 
