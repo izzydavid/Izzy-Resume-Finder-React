@@ -1,51 +1,48 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const router = require("express").Router();
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const auth = require("../../middleware/auth");
 
-// define the User model schema
-const UserSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    index: { unique: true }
-  },
-  password: String,
-  name: String
-});
+const User = require("../models/user.model.js.js");
 
+router.post("/", (req, res) => {
+  const { email, password } = req.body;
 
-/**
- * Compare the passed password with the value in the database. A model method.
- *
- * @param {string} password
- * @returns {object} callback
- */
-UserSchema.methods.comparePassword = function comparePassword(password, callback) {
-  bcrypt.compare(password, this.password, callback);
-};
+  // basic validation
+  if (!email || !password) {
+    return res.status(400).json({ msg: "Please enter all fields." });
+  }
 
+  // check for existing user
+  User.findOne({ email }).then(user => {
+    if (!user) return res.status(400).json({ msg: "User does not exist." });
 
-/**
- * The pre-save hook method.
- */
-UserSchema.pre('save', function saveHook(next) {
-  const user = this;
+    // validate password
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
-  // proceed further only if the password is modified or the user is new
-  if (!user.isModified('password')) return next();
-
-
-  return bcrypt.genSalt((saltError, salt) => {
-    if (saltError) { return next(saltError); }
-
-    return bcrypt.hash(user.password, salt, (hashError, hash) => {
-      if (hashError) { return next(hashError); }
-
-      // replace a password string with hash value
-      user.password = hash;
-
-      return next();
+      jwt.sign(
+        { id: user.id },
+        process.env.jwtSecret,
+        { expiresIn: 3600 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({
+            token,
+            user: { id: user._id, name: user.name, email: user.email }
+          });
+        }
+      );
     });
   });
 });
 
+router.get("/user", auth, (req, res) => {
+  User.findById(req.user.id)
+    .select("-password")
+    .then(user => res.json(user));
+});
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = router;
+
+

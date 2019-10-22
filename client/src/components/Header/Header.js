@@ -34,7 +34,7 @@ class Header extends React.Component {
     return (
       <div className="headercolor sticky-top shadow" >
         <div className="position-absolute w-100 text-center" style={{ zIndex: '9999', pointerEvents: 'none', marginTop: '10px' }} id="hh-title">
-          <h2 className="lettercolor1 mb-0 font-weight-bold" id="title">ᕼᗩᑎᗪY ᕼEᒪᑭEᖇ</h2>
+          <h2 className="lettercolor1 mb-0 font-weight-bold" id="title">Resume Finder</h2>
         </div>
         <div className="container">
           <div className="row">

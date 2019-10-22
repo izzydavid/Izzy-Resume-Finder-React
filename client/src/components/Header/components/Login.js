@@ -11,7 +11,7 @@ class Login extends React.Component {
             Login
           </div>
         </Link>
-      </NavItem >
+      </NavItem>
     )
   }
 }

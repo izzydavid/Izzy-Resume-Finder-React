@@ -12,7 +12,7 @@ class Footer extends React.Component {
           height: '1px',
           background: '#FF3B3F'
         }} />
-        <div className="my-2"> © 2018 Copyright:<a href="/"> Handy Helper</a></div>
+        <div className="my-2"> © 2019 Copyright:<a href="/"> Resume-Finder</a></div>
       </div>
     )
   };
