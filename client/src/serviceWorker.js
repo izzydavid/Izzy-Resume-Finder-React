@@ -133,4 +133,3 @@ export function unregister() {
     });
   }
 }
-© 2019 GitHub, Inc.
