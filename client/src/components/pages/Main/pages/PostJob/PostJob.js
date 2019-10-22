@@ -173,7 +173,7 @@ export default class PostJob extends React.Component {
               <FormGroup>
                 <Label>Address</Label>
                 <Input type="text" id="address-input" placeholder="address" name="address" value={this.state.address} readonly="readonly" />
-                <a href="" onClick={this.viewAddress}>Add or Edit Address</a>
+                <a href="#results" onClick={this.viewAddress}>Add or Edit Address</a>
                 <FormFeedback>Plase add an address.</FormFeedback>
               </FormGroup>
               <FormGroup>

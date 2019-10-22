@@ -18,7 +18,7 @@ class Login extends Component {
 
     componentWillMount() {
         if (this.Auth.loggedIn())
-            this.props.history.replace('/main/home');
+            this.props.history.replace('./main/home/home.js');
     }
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
@@ -31,7 +31,7 @@ class Login extends Component {
     login = () => {
         this.Auth.login(this.state.email, this.state.password)
             .then(res => {
-                this.props.history.replace('/main/home');
+                this.props.history.replace('./main/home/home.js');
             })
             .catch(err => {
                 alert(err);

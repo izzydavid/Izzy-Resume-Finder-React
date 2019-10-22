@@ -36,8 +36,8 @@ export default class Home extends React.Component {
             <div className="middle">
               <h1> <ion-icon name="add-circle-outline" >+</ion-icon></h1>
             </div>
-            <Dropzone width="100%" onDrop={this.props.onDrop} className="img-thumbnail" inputProps={{ className: 'maxWidth' }} style={{ width: '250px', height: '250px' }}>
-              <img className="img-thumbnail img-fluid" width="100%" height="100%" src={this.props.mainState.image ? this.props.mainState.image : "../../../../../images/profileImage.png"} className="img-responsive" /></Dropzone>
+            <Dropzone width="100%" onDrop={this.props.onDrop} className="img-thumbnail img-responsive" inputProps={{ className: 'maxWidth' }} style={{ width: '250px', height: '250px' }}>
+              <img className="img-thumbnail img-fluid" width="100%" height="100%" src={this.props.mainState.image ? this.props.mainState.image : "../../../../../images/profileImage.png"} alt = 'this is a place for images'/></Dropzone>
           </div>
           <div className="col-12 col-lg-8">
             <div className="row">
@@ -60,7 +60,7 @@ export default class Home extends React.Component {
                 {this.props.mainState.zip}
                 <br />
                 <br />
-                <a href="" onClick={this.props.onView}>Edit Address</a>
+                <a href="#results2" onClick={this.props.onView}>Edit Address</a>
               </div>
             </div>
             <div className="row pb-3">
