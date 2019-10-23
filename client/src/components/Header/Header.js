@@ -18,7 +18,7 @@ class Header extends React.Component {
 
   state = {
     isOpen: false
-  };
+  }
 
   toggle() {
     this.setState({
