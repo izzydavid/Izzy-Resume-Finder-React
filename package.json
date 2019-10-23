@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/izzydavid/izzy-resume-finder-react/issues"
   },
-  "homepage": "https://github.com/izzydavid/izzy-resume-finder-react#readme",
+  "homepage": "https://izzy-resume-finder-react.herokuapp.com/",
   "dependencies": {
     "@material-ui/core": "^4.5.1",
     "@types/googlemaps": "^3.38.0",

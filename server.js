@@ -13,7 +13,7 @@ var authRoutes = require("./routes/auth.routes");
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -43,9 +43,9 @@ app.use("/images", imagesRoutes);
 app.use("/api", apiRoutes); 
 app.use("/auth", authRoutes);
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password@ds137498.mlab.com:37498/heroku_1wncblw2"; 
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password123@ds137498.mlab.com:37498/heroku_1wncblw2"; 
 
-mongoose.set(MONGODB_URI, { useNewUrlParser: true, useCreateIndex: true,
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useCreateIndex: true,
   useUnifiedTopology: true,
   useFindAndModify: false});
 
