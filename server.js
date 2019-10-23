@@ -32,6 +32,9 @@ const auth = jwt({
   }
 });
 
+ app.use(express.urlencoded({ extended: true }));
+ app.use(express.json());
+
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(bodyParser.json());

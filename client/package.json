@@ -2,7 +2,10 @@
   "name": "izzy-resume-finder-react",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": "https://izzy-resume-finder-react.herokuapp.com/",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "dependencies": {
     "@material-ui/core": "^4.5.1",
     "@types/googlemaps": "^3.38.0",
