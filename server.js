@@ -11,8 +11,12 @@ const apiRoutes = require("./routes/api.routes")
 var authRoutes = require("./routes/auth.routes");
 
 
+
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const auth = jwt({
   secret: process.env.JWT_SECRET,
@@ -31,26 +35,19 @@ const auth = jwt({
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(bodyParser.json());
 
-// Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-app.use("/images", imagesRoutes)
-app.use("/api", apiRoutes)
-//auth routes
+
+app.use("/images", imagesRoutes); 
+app.use("/api", apiRoutes); 
 app.use("/auth", authRoutes);
-//app.use(auth);
 
-// Add routes, both API and view
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password@ds137498.mlab.com:37498/heroku_1wncblw2"; 
 
-
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password@ds137498.mlab.com:37498/heroku_1wncblw2";
-
-mongoose.Promise = global.Promise; 
-// Connect to the Mongo DB
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
-mongoose.set('useCreateIndex', true);
+mongoose.set(MONGODB_URI, { useNewUrlParser: true, useCreateIndex: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false});
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
