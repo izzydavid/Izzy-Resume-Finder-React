@@ -6,15 +6,13 @@ const path = require("path");
 const mongoose = require("mongoose");
 var cookieParser = require('cookie-parser');
 var jwt = require('express-jwt');
-const app = express();
-const PORT = process.env.PORT || 3001;
-
-
-
 const imagesRoutes = require("./routes/images.routes")
-
 const apiRoutes = require("./routes/api.routes")
 var authRoutes = require("./routes/auth.routes");
+
+
+const app = express();
+const PORT = process.env.PORT || 3001;
 
 const auth = jwt({
   secret: process.env.JWT_SECRET,
@@ -24,16 +22,10 @@ const auth = jwt({
       console.log("auth", req.headers.authorization.split(' ')[1]);
       return req.headers.authorization.split(' ')[1];
     }
-    //  else if (req.cookies.token) {
-    //    console.log("cook", req.cookies.token)
-    //   return req.cookies.token
-    // }
+
     return null;
   }
 });
-
- app.use(express.urlencoded({ extended: true }));
- app.use(express.json());
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
@@ -53,8 +45,9 @@ app.use("/auth", authRoutes);
 
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password123@ds137498.mlab.com:37498/heroku_1wncblw2'";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password@ds137498.mlab.com:37498/heroku_1wncblw2";
 
+mongoose.Promise = global.Promise; 
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);

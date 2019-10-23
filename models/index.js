@@ -1,5 +1,5 @@
 module.exports = {
-  User: require("./user.model.js.js"),
-  UserData: require('../models.1/userData.model.js'),
-  Job: require('../models.1/job.model')
+  User: require("./user.model"),
+  UserData: require('./userData.model'),
+  Job: require('./job.model')
 };
