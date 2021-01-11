@@ -39,11 +39,11 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use("/images", imagesRoutes); 
-app.use("/api", apiRoutes); 
+app.use("/images", imagesRoutes);
+app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password123@ds137498.mlab.com:37498/heroku_1wncblw2"; 
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password123@ds137498.mlab.com:37498/heroku_1wncblw2";
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useCreateIndex: true,
   useUnifiedTopology: true,
